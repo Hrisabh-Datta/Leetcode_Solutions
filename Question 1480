@@ -1,0 +1,11 @@
+class Solution {
+    public int[] runningSum(int[] nums) {
+        int n = nums.length;  
+        int arr[] = new int[n];
+        arr[0] = nums[0];  //storing 1st element in arr
+        for(int i=1; i<n; i++){
+            arr[i] = arr[i-1] + nums[i]; //summing current element with previous value stored in arr
+        }
+        return arr;
+    }
+}
