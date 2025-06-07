@@ -1,0 +1,31 @@
+class Solution {
+    public String clearStars(String s) {
+        char[] arr = s.toCharArray();
+        int n = arr.length;
+        StringBuilder sb = new StringBuilder();
+        boolean[] removed = new boolean[n];
+        Stack<Integer>[] stack = new Stack[26];
+        for(int i=0;i<26;i++){
+            stack[i] = new Stack<>();
+        }
+        for(int i=0;i<n;i++){
+            char c = arr[i];
+            if(c== '*') removeStar(removed, stack);
+            else stack[c-'a'].push(i);
+        }
+        for(int i=0;i<n;i++){
+            if(!removed[i] && arr[i] != '*')sb.append(arr[i]);
+        }
+        return sb.toString();
+
+    }
+    static void removeStar(boolean[] removed, Stack<Integer>[] stack){
+        for(int i=0;i<26;i++){
+            if(!stack[i].isEmpty()){
+                removed[stack[i].pop()] = true;
+                return ;
+            }
+        }
+    }
+
+}
